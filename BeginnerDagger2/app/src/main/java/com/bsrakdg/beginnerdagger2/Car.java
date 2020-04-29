@@ -8,11 +8,12 @@ public class Car {
     // The order : Constructor injection -> Field injection -> Method injection
     private static final String TAG = "Car";
 
-    @Inject Engine engine; // Field injection
+    private Engine engine;
     private Wheels wheels;
 
     @Inject
-    public Car(Wheels wheels) { // Constructor injection
+    public Car(Engine engine, Wheels wheels) {
+        this.engine = engine;
         this.wheels = wheels;
     }
 
