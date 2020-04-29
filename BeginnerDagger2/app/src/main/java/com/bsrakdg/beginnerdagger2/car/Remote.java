@@ -1,4 +1,4 @@
-package com.bsrakdg.beginnerdagger2;
+package com.bsrakdg.beginnerdagger2.car;
 
 import android.util.Log;
 
@@ -9,7 +9,6 @@ public class Remote {
 
     @Inject
     public Remote() {
-
     }
 
     public void setListener(Car car) {

@@ -1,4 +1,4 @@
-package com.bsrakdg.beginnerdagger2;
+package com.bsrakdg.beginnerdagger2.car;
 
 import javax.inject.Inject;
 
@@ -6,7 +6,7 @@ public class Wheels {
     // We don't own this class so we can't annotate it with @Inject
     // We should use Module and Provider for get instance : look at WheelsModule
     // If we cant inject constructor
-    // or We should use Module and Provider we have to call another functions we created an instance
+    // or We should use Module and Provide we have to call another functions we created an instance
 
     private Rims rims;
     private Tires tires;

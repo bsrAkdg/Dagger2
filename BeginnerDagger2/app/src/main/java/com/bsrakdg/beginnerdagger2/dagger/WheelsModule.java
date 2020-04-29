@@ -1,4 +1,8 @@
-package com.bsrakdg.beginnerdagger2;
+package com.bsrakdg.beginnerdagger2.dagger;
+
+import com.bsrakdg.beginnerdagger2.car.Rims;
+import com.bsrakdg.beginnerdagger2.car.Tires;
+import com.bsrakdg.beginnerdagger2.car.Wheels;
 
 import dagger.Module;
 import dagger.Provides;

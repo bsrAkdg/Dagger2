@@ -1,4 +1,4 @@
-package com.bsrakdg.beginnerdagger2;
+package com.bsrakdg.beginnerdagger2.car;
 
 import android.util.Log;
 
@@ -18,6 +18,7 @@ public class Car {
     }
 
     public void drive() {
+        engine.start();
         Log.d(TAG, "drive: driving...");
     }
 
