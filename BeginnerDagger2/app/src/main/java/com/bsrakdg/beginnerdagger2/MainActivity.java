@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.bsrakdg.beginnerdagger2.car.Car;
 import com.bsrakdg.beginnerdagger2.dagger.CarComponent;
-import com.bsrakdg.beginnerdagger2.car.DaggerCarComponent;
+import com.bsrakdg.beginnerdagger2.dagger.DaggerCarComponent;
 
 import javax.inject.Inject;
 
