@@ -3,17 +3,20 @@ package com.bsrakdg.beginnerdagger2.dagger;
 import com.bsrakdg.beginnerdagger2.car.DieselEngine;
 import com.bsrakdg.beginnerdagger2.car.Engine;
 
-import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 
 @Module
-public abstract class DiesellEngineModule {
+public class DiesellEngineModule {
 
-    /*@Provides
-    Engine provideEngine(DieselEngine engine) {
-        return engine;
-    }*/
+    private int horsePower; // get run time
 
-    @Binds
-    abstract Engine bindEngine(DieselEngine petrolEngine);
+    public DiesellEngineModule(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    @Provides
+    Engine provideEngine() {
+        return new DieselEngine(horsePower);
+    }
 }

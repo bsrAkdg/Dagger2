@@ -7,8 +7,9 @@ import com.bsrakdg.beginnerdagger2.car.Wheels;
 import dagger.Module;
 import dagger.Provides;
 
+// abstract reason : https://www.tutorialspoint.com/declare-static-variables-and-methods-in-an-abstract-class-in-java
 @Module
-public class WheelsModule {
+public abstract class WheelsModule {
 
     // Modules add objects to the dependency graph/ provides methods
     @Provides
