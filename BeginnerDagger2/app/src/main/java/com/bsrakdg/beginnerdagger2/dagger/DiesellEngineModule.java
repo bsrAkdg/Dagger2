@@ -15,5 +15,5 @@ public abstract class DiesellEngineModule {
     }*/
 
     @Binds
-    abstract Engine provideEngine(DieselEngine petrolEngine);
+    abstract Engine bindEngine(DieselEngine petrolEngine);
 }

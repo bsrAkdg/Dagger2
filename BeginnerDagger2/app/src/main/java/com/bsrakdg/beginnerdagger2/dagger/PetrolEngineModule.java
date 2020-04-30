@@ -15,5 +15,5 @@ public abstract class PetrolEngineModule {
     }*/
 
     @Binds
-    abstract Engine provideEngine(PetrolEngine petrolEngine);
+    abstract Engine bindEngine(PetrolEngine petrolEngine);
 }
