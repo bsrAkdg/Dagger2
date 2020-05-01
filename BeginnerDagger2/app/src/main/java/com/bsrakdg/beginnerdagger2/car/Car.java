@@ -2,10 +2,11 @@ package com.bsrakdg.beginnerdagger2.car;
 
 import android.util.Log;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import com.bsrakdg.beginnerdagger2.PerActivity;
 
-@Singleton
+import javax.inject.Inject;
+
+@PerActivity
 public class Car {
     // The order : Constructor injection -> Field injection -> Method injection
     private static final String TAG = "Car";
