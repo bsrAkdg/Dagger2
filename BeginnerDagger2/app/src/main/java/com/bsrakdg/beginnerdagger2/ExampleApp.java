@@ -10,7 +10,7 @@ public class ExampleApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        appComponent = DaggerAppComponent.create();
+        appComponent = DaggerAppComponent.factory().create(new DriverModule("Okan"));
     }
 
     public AppComponent getAppComponent() {

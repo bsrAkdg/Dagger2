@@ -21,10 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         CarComponent component = ((ExampleApp) getApplication())
                 .getAppComponent()
-                .getCarComponentBuilder()
-                .horsePower(1500)
-                .engineCapacity(80)
-                .build();
+                .getCarComponentFactory().create(150, 1400);
 
         component.inject(this);
 

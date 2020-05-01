@@ -24,7 +24,7 @@ public class Car {
 
     public void drive() {
         engine.start();
-        Log.d(TAG, "driver " + driver + " working to Car : " + this);
+        Log.d(TAG, "driver : " + driver.name + " working to Car : " + this);
     }
 
     @Inject
