@@ -4,26 +4,27 @@ import com.bsrakdg.beginnerdagger2.MainActivity;
 import com.bsrakdg.beginnerdagger2.PerActivity;
 import com.bsrakdg.beginnerdagger2.car.Car;
 
+import javax.inject.Named;
+
+import dagger.BindsInstance;
 import dagger.Subcomponent;
 
 @PerActivity
-@Subcomponent(modules = {WheelsModule.class, DieselEngineModule.class})
+@Subcomponent(modules = {WheelsModule.class, PetrolEngineModule.class})
 public interface CarComponent {
     Car getCar();
 
     void inject(MainActivity mainActivity);
 
-    //@Component.Builder
-    //interface Builder {
-    //
-    //    @BindsInstance
-    //    Builder horsePower(@Named("horse power") int horsePower); // 500
-    //
-    //    @BindsInstance
-    //    Builder engineCapacity(@Named("engine capacity") int engineCapacity);
-    //
-    //    Builder appComponent(AppComponent appComponent);
-    //
-    //    CarComponent build();
-    //}
+    @Subcomponent.Builder
+    interface Builder {
+
+        @BindsInstance
+        Builder horsePower(@Named("horse power") int horsePower); // 500
+
+        @BindsInstance
+        Builder engineCapacity(@Named("engine capacity") int engineCapacity);
+
+        CarComponent build();
+    }
 }

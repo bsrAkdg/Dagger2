@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bsrakdg.beginnerdagger2.car.Car;
 import com.bsrakdg.beginnerdagger2.dagger.CarComponent;
-import com.bsrakdg.beginnerdagger2.dagger.DieselEngineModule;
 
 import javax.inject.Inject;
 
@@ -22,7 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
         CarComponent component = ((ExampleApp) getApplication())
                 .getAppComponent()
-                .getCarComponent(new DieselEngineModule(100));
+                .getCarComponentBuilder()
+                .horsePower(1500)
+                .engineCapacity(80)
+                .build();
+
         component.inject(this);
 
         // Compare engine address at log between car1 and car2
