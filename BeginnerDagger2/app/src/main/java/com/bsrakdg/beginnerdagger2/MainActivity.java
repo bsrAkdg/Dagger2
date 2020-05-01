@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bsrakdg.beginnerdagger2.car.Car;
 import com.bsrakdg.beginnerdagger2.dagger.CarComponent;
-import com.bsrakdg.beginnerdagger2.dagger.DaggerCarComponent;
+import com.bsrakdg.beginnerdagger2.dagger.DieselEngineModule;
 
 import javax.inject.Inject;
 
@@ -20,11 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CarComponent component = DaggerCarComponent.builder()
-                .appComponent(((ExampleApp) getApplication()).getAppComponent())
-                .horsePower(150)
-                .engineCapacity(5000)
-                .build();
+        CarComponent component = ((ExampleApp) getApplication())
+                .getAppComponent()
+                .getCarComponent(new DieselEngineModule(100));
         component.inject(this);
 
         // Compare engine address at log between car1 and car2
