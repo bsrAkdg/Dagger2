@@ -14,9 +14,11 @@ import dagger.android.support.AndroidSupportInjectionModule;
 // AppComponent owns the @Singleton scope
 // if AppComponent dies all dependencies die
 @Singleton
-@Component(modules = {AndroidSupportInjectionModule.class,
+@Component(modules = {
+        AndroidSupportInjectionModule.class,
         ActivityBuildersModule.class,
-        AppModule.class})
+        AppModule.class,
+        ViewModelFactoryModule.class})
 public interface AppComponent extends AndroidInjector<BaseApplication> {
 
     @Component.Builder

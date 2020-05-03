@@ -1,6 +1,7 @@
 package com.bsrakdg.advanceddagger2.di;
 
-import com.bsrakdg.advanceddagger2.AuthActivity;
+import com.bsrakdg.advanceddagger2.di.auth.AuthViewModelsModule;
+import com.bsrakdg.advanceddagger2.ui.auth.AuthActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -8,7 +9,7 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class ActivityBuildersModule {
 
-    @ContributesAndroidInjector // needed abstract
+    @ContributesAndroidInjector(modules = { AuthViewModelsModule.class })
     abstract AuthActivity contributeAuthActivity(); // AuthActivity wait data from AppComponent
 
 }
