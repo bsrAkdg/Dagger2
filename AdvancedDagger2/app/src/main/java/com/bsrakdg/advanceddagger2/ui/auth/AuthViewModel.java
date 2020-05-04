@@ -5,9 +5,9 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
+import com.bsrakdg.advanceddagger2.SessionManager;
 import com.bsrakdg.advanceddagger2.models.User;
 import com.bsrakdg.advanceddagger2.network.auth.AuthApi;
 
@@ -22,17 +22,17 @@ public class AuthViewModel extends ViewModel {
 
     private final AuthApi authApi;
     private MediatorLiveData<AuthResource<User>> authUser = new MediatorLiveData<>();
+    private SessionManager sessionManager;
 
     @Inject
-    public AuthViewModel(AuthApi authApi) {
+    public AuthViewModel(AuthApi authApi, SessionManager sessionManager) {
         this.authApi = authApi;
+        this.sessionManager = sessionManager;
         Log.d(TAG, "AuthViewModel: viewmodel is working");
     }
 
-    public void authenticateWithId(int userId) {
-        authUser.setValue(AuthResource.loading((User) null));
-
-        final LiveData<AuthResource<User>> source = LiveDataReactiveStreams
+    private LiveData<AuthResource<User>> queryUserId(int userId) {
+        return LiveDataReactiveStreams
                 .fromPublisher(authApi.getUser(userId)
                         .subscribeOn(Schedulers.io())
                         .onErrorReturn(new Function<Throwable, User>() {
@@ -52,17 +52,14 @@ public class AuthViewModel extends ViewModel {
                                 return AuthResource.authenticated(user);
                             }
                         }));
-
-        authUser.addSource(source, new Observer<AuthResource<User>>() {
-            @Override
-            public void onChanged(AuthResource<User> userAuthResource) {
-                authUser.setValue(userAuthResource);
-                authUser.removeSource(source);
-            }
-        });
     }
 
-    public LiveData<AuthResource<User>> observableUser() {
-        return authUser;
+    public void authenticateWithId(int userId) {
+        Log.d(TAG, "authenticateWithId: attempting to login...");
+        sessionManager.authenticateWithId(queryUserId(userId));
+    }
+
+    public LiveData<AuthResource<User>> observeAuthState() {
+        return sessionManager.getAuthUser();
     }
 }
