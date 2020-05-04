@@ -1,5 +1,6 @@
 package com.bsrakdg.advanceddagger2.ui.auth;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bsrakdg.advanceddagger2.R;
 import com.bsrakdg.advanceddagger2.models.User;
+import com.bsrakdg.advanceddagger2.ui.main.MainActivity;
 import com.bsrakdg.advanceddagger2.viewmodels.ViewModelProviderFactory;
 import com.bumptech.glide.RequestManager;
 
@@ -41,10 +43,8 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.login_button:
-                attemptLogin();
-                break;
+        if (view.getId() == R.id.login_button) {
+            attemptLogin();
         }
     }
 
@@ -79,6 +79,12 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
         }
     }
 
+    private void onLoginSuccess() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void subscribeObservers() {
         viewModel.observeAuthState().observe(this, new Observer<AuthResource<User>>() {
             @Override
@@ -100,6 +106,7 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
                             Log.d(TAG, "onChanged: LOGIN SUCCESS : " + userAuthResource.data
                                     .getEmail());
                             showProgressBar(false);
+                            onLoginSuccess();
                             break;
                         default:
                             break;
