@@ -2,7 +2,11 @@ package com.bsrakdg.advanceddagger2.ui.main;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bsrakdg.advanceddagger2.BaseActivity;
@@ -17,5 +21,22 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         Log.d(TAG, "onCreate: starting");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                sessionManager.logOut();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

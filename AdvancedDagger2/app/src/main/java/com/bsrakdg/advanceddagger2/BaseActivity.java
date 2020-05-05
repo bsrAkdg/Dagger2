@@ -46,6 +46,7 @@ public abstract class BaseActivity extends DaggerAppCompatActivity {
                             Log.d(TAG, "onChanged: ERROR : " + userAuthResource.message);
                             break;
                         case NOT_AUTHENTICATED:
+                            Log.d(TAG, "onChanged: LOGOUT CLICKED");
                             navLoginScreen(); // trigger when SessionManager logout() called
                             break;
                         case AUTHENTICATED:
