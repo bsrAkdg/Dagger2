@@ -3,6 +3,7 @@ package com.bsrakdg.advanceddagger2.di.main;
 import androidx.lifecycle.ViewModel;
 
 import com.bsrakdg.advanceddagger2.di.ViewModelKey;
+import com.bsrakdg.advanceddagger2.ui.main.posts.PostsViewModel;
 import com.bsrakdg.advanceddagger2.ui.main.profile.ProfileViewModel;
 
 import dagger.Binds;
@@ -16,4 +17,9 @@ public abstract class MainViewModelsModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel.class)
     public abstract ViewModel bindProfileViewModel(ProfileViewModel profileViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PostsViewModel.class)
+    public abstract ViewModel bindPostsViewModel(PostsViewModel profileViewModel);
 }

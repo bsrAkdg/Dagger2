@@ -1,5 +1,6 @@
 package com.bsrakdg.advanceddagger2.di.main;
 
+import com.bsrakdg.advanceddagger2.ui.main.posts.PostsFragment;
 import com.bsrakdg.advanceddagger2.ui.main.profile.ProfileFragment;
 
 import dagger.Module;
@@ -9,5 +10,8 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class MainFragmentBuildersModule {
 
     @ContributesAndroidInjector
-    abstract ProfileFragment contributeMainActivity();
+    abstract ProfileFragment contributeProfileFragment();
+
+    @ContributesAndroidInjector
+    abstract PostsFragment contributePostFragment();
 }

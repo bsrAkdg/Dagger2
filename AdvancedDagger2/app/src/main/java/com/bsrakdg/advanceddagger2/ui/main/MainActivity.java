@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.bsrakdg.advanceddagger2.BaseActivity;
 import com.bsrakdg.advanceddagger2.R;
-import com.bsrakdg.advanceddagger2.ui.main.profile.ProfileFragment;
+import com.bsrakdg.advanceddagger2.ui.main.posts.PostsFragment;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
 
     private void testFragment() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_container, new ProfileFragment()).commit();
+                .replace(R.id.main_container, new PostsFragment()).commit();
     }
 
     @Override
