@@ -4,4 +4,6 @@
     <string name="login">Login</string>
     <string name="error_login">\nPlease enter a valid number(1-10)</string>
     <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
+    <string name="posts">Posts</string>
 </resources>
