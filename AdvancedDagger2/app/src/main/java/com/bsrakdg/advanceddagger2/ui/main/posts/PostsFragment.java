@@ -10,11 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bsrakdg.advanceddagger2.R;
 import com.bsrakdg.advanceddagger2.models.Post;
 import com.bsrakdg.advanceddagger2.ui.main.Resource;
+import com.bsrakdg.advanceddagger2.util.VerticalSpacingItemDecoration;
 import com.bsrakdg.advanceddagger2.viewmodels.ViewModelProviderFactory;
 
 import java.util.List;
@@ -29,6 +31,9 @@ public class PostsFragment extends DaggerFragment {
     @Inject
     ViewModelProviderFactory providerFactory;
 
+    @Inject
+    PostsRecyclerAdapter adapter;
+
     private PostsViewModel viewModel;
     private RecyclerView recyclerView;
 
@@ -37,7 +42,7 @@ public class PostsFragment extends DaggerFragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.fragment_posts, container, false);
     }
 
     @Override
@@ -47,6 +52,16 @@ public class PostsFragment extends DaggerFragment {
         viewModel = new ViewModelProvider(this, providerFactory).get(PostsViewModel.class);
 
         subscribeObservers();
+
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        VerticalSpacingItemDecoration verticalSpacingItemDecoration =
+                new VerticalSpacingItemDecoration(15);
+        recyclerView.addItemDecoration(verticalSpacingItemDecoration);
+        recyclerView.setAdapter(adapter);
     }
 
     private void subscribeObservers() {
@@ -56,7 +71,18 @@ public class PostsFragment extends DaggerFragment {
                     @Override
                     public void onChanged(Resource<List<Post>> listResource) {
                         if (listResource != null) {
-                            Log.d(TAG, "onChanged: " + listResource.data);
+                            switch (listResource.status) {
+                                case ERROR:
+                                    Log.e(TAG, "onChanged: Error : " + listResource.message);
+                                    break;
+                                case SUCCESS:
+                                    Log.d(TAG, "onChanged: " + listResource.data);
+                                    adapter.setPosts(listResource.data);
+                                    break;
+                                case LOADING:
+                                    Log.d(TAG, "onChanged: Loading ...");
+                                    break;
+                            }
                         }
                     }
                 });

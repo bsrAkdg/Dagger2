@@ -2,4 +2,5 @@
 <resources>
     <dimen name="normal_text_size">17sp</dimen>
     <dimen name="margin_top_text">30dp</dimen>
+    <dimen name="recycler_item_padding">25dp</dimen>
 </resources>
