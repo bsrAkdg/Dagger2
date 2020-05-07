@@ -21,6 +21,7 @@ import com.bsrakdg.advanceddagger2.viewmodels.ViewModelProviderFactory;
 import com.bumptech.glide.RequestManager;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
@@ -40,6 +41,14 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
     private AuthViewModel viewModel;
     private EditText userId;
     private ProgressBar progressBar;
+
+    @Inject
+    @Named("app_user")
+    User userOne;
+
+    @Inject
+    @Named("auth_user")
+    User userTwo;
 
     @Override
     public void onClick(View view) {
@@ -62,6 +71,11 @@ public class AuthActivity extends DaggerAppCompatActivity implements View.OnClic
         setLogo();
 
         subscribeObservers();
+
+        // Look at this memory log with configuration change (rotation)
+        Log.d(TAG, "onCreate: User One " + userOne);
+        Log.d(TAG, "onCreate: User Two " + userTwo);
+
     }
 
     private void attemptLogin() {
