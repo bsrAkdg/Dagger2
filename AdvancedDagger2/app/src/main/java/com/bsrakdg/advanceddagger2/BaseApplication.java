@@ -7,10 +7,12 @@ import dagger.android.support.DaggerApplication;
 
 public class BaseApplication extends DaggerApplication {
 
-    // BaseApplication : client, AppComponent : server
+    /** BaseApplication extendes from DaggerApplication,
+     * because it allows injecting to AppComponent
+     */
+
     @Override
     protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
-        // return app component
         return DaggerAppComponent.builder().application(this).build();
     }
 }
